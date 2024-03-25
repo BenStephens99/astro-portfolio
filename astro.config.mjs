@@ -5,5 +5,11 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [sanity(), react()]
+  integrations: [
+    sanity({
+      projectId: "p4zme5fk",
+      dataset: "production",
+      useCdn: false,
+    }),
+  ],
 });
