@@ -10,6 +10,8 @@ export default defineConfig({
       projectId: "p4zme5fk",
       dataset: "production",
       useCdn: false,
+      studioBasePath: "/admin",
     }),
+    react(),
   ],
 });
