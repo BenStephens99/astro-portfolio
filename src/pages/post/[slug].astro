@@ -1,20 +1,36 @@
 --- 
-import { getPosts } from '../../sanity.js'
+import { getPosts } from '../../utils/sanity.js'
+import Layout from '../../layouts/Layout.astro';
+import { urlFor } from '../../utils/image';
 
 export async function getStaticPaths() {
 
   const posts = await getPosts();
 
-  return posts.map(({ slug, title }) => {
+  return posts.map(({ slug, title, image }) => {
     return {
       params: { slug: slug.current },
-      props: { title },
+      props: { title, image: urlFor(image).width(400).url() },
     };
   });
 }
 
 const { slug  } = Astro.params;
 const { title } = Astro.props;
+const { image } = Astro.props;
 ---
 
-<h1>{title}</h1>
+<Layout title={title}>
+  <div class="post">
+      <p>{slug}</p>
+      <img src={image} alt={title} transition:name=`${title}-image`/>
+  </div>
+</Layout>
+
+<style>
+  .post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>

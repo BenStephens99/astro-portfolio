@@ -1,0 +1,33 @@
+--- 
+
+import { getPosts } from "../utils/sanity";
+import { urlFor } from "../utils/image";
+
+const posts = await getPosts();
+
+for (const post of posts) {
+    post.image.url = urlFor(post.image).height(200).url();
+}
+--- 
+
+<ul class="post-list">
+    {posts.map((post) => (
+        <li>
+            <a href={`/post/${post.slug.current}`}>
+                <img src={post.image.url} alt={post.title} transition:name={`${post.title}-image`}/>    
+            </a>
+        </li>
+    ))}
+</ul>
+
+<style lang="scss">
+    .post-list {
+        display: flex;
+        gap: 1rem;
+        padding: 0px;
+
+        li {
+            list-style: none;
+        }
+    }
+</style>
