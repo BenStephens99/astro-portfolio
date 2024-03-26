@@ -2,6 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import PostList from "../components/PostList.astro";
 import HomeSection from "../components/HomeSection.svelte";
+
+const section = {
+	title: "Test title",
+	description: "Test description",
+}
+
+
 ---
 
 <Layout title="Ben Stephens">
@@ -16,8 +23,8 @@ import HomeSection from "../components/HomeSection.svelte";
 				user-friendly websites & applications.
 			</p>
 			<button class="large">View Work</button>
-			<HomeSection />
 		</div>
+		<HomeSection section={section}/>
 	</main>
 </Layout>
 

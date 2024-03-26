@@ -1,9 +1,10 @@
 <script>
-    const array = ['blue', 'red', 'green']
+    export let section = {};
 </script>
 
-{#each array as color}
-    <div style="background-color: {color}; padding: 20px; margin: 10px;">
-        {color}
+<section class="home-section">
+    <div class="container">
+        <h2>{section.title}</h2>
+        <p>{section.description}</p>
     </div>
-{/each}
+</section>
