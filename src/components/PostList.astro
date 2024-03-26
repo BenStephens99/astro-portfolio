@@ -6,15 +6,17 @@ import { urlFor } from "../utils/image";
 const posts = await getPosts();
 
 for (const post of posts) {
-    post.image.url = urlFor(post.image).height(200).url();
+    post.image.url = urlFor(post.image).height(175).url();
 }
 --- 
-
+<h2>Latest Posts</h2>
 <ul class="post-list">
     {posts.map((post) => (
         <li>
-            <a href={`/post/${post.slug.current}`}>
+            <a href={`/post/${post.slug.current}`} class="no-underline post-item">
+                <datetime>{new Date(post.publishedAt).toLocaleDateString()}</datetime>
                 <img src={post.image.url} alt={post.title} transition:name={`${post.title}-image`}/>    
+                <h3>{post.title}</h3>
             </a>
         </li>
     ))}
@@ -28,6 +30,27 @@ for (const post of posts) {
 
         li {
             list-style: none;
+        }
+    }
+
+    .post-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h3 {
+            margin: 0;
+        }
+
+        datetime {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
         }
     }
 </style>

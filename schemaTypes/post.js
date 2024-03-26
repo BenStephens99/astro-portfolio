@@ -11,6 +11,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -22,6 +27,12 @@ export default defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+    }),
+    defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [{type: 'block'}],
     }),
   ],
 })
