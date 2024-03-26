@@ -1,10 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PostList from '../components/PostList.astro';
+import Layout from "../layouts/Layout.astro";
+import PostList from "../components/PostList.astro";
+import HomeSection from "../components/HomeSection.svelte";
 ---
 
 <Layout title="Ben Stephens">
 	<main>
-		<PostList />
+		<div class="introduction">
+			<h1><span class="lighter">Web</span> Developer</h1>
+			<p>
+				Hi, I'm Ben, a Brighton based Web Developer.
+			</p>
+			<p>
+				I specialise in building fast, accessible, SEO-friendly and
+				user-friendly websites & applications.
+			</p>
+			<button class="large">View Work</button>
+			<HomeSection />
+		</div>
 	</main>
 </Layout>
+
+<style lang="scss">
+	.introduction {
+		max-width: 800px;
+		margin: auto;
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+
+		h1 {
+			font-size: 60px;
+			font-weight: 400;
+			letter-spacing: -5px;
+			margin-bottom: 2rem;
+
+			.lighter {
+				font-weight: 300;
+			}
+		}
+
+		p {
+			font-size: 24px;
+			margin: 0.5rem;
+		}
+
+		button {
+			margin-top: 1.5rem;
+			background-color: var(--accent);
+			color: var(--secondary);
+		}
+	}
+</style>
