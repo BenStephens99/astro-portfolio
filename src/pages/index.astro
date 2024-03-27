@@ -1,13 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PostList from "../components/PostList.astro";
-import HomeSection from "../components/HomeSection.svelte";
+import HomeSection from "../components/HomeSection.astro";
+import { getHomeSections } from "../utils/sanity";
 
-const section = {
-	title: "Test title",
-	description: "Test description",
-}
-
+const homeSections = await getHomeSections();
 
 ---
 
@@ -24,15 +20,17 @@ const section = {
 			</p>
 			<button class="large">View Work</button>
 		</div>
-		<HomeSection section={section}/>
+		{homeSections.map((section) => (
+			<HomeSection section={section} />
+		))}
 	</main>
 </Layout>
 
 <style lang="scss">
 	.introduction {
 		max-width: 800px;
-		margin: auto;
-		margin-top: 2rem;
+		margin: 2rem auto;
+		padding-bottom: 2rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

@@ -12,3 +12,8 @@ export async function getPosts() {
     return posts
   }
 
+export async function getHomeSections() {
+    const homeSections = await sanityClient.fetch('*[_type == "homeSection"] | order(_updatedAt desc)')
+    return homeSections
+  }
+

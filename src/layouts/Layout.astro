@@ -34,13 +34,18 @@ const { title } = Astro.props;
 			</nav>
 		</header>
 		<slot />
+		<footer>
+			<p>© Ben Stephens 2024</p>
+		</footer>
 	</body>
 </html>
 
 <style lang="scss">
 	header {
 		width: 100%;
-		padding: 20px 0;
+		max-width: var(--content-width);
+		margin: 0 auto;
+		padding: 1rem 2rem;
 	}
 
 	nav {
@@ -67,6 +72,8 @@ const { title } = Astro.props;
 	@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 	:root {
+		--content-width: 1440px;
+
 		--primary: #3D3929;
 		--secondary: #EFEDE4;
 		--accent: #C86341;
@@ -81,7 +88,13 @@ const { title } = Astro.props;
 		color: #3D3929;
 		font-family: "Inter", sans-serif;
 		margin: 0 auto;
-		padding: 0px 20px;
+	}
+
+	footer {
+		background-color: rgb(30, 30, 30);
+		color: white;
+		text-align: center;
+		padding: 2rem;
 	}
 
 	h1, h2, h3, h4 {
@@ -116,6 +129,19 @@ const { title } = Astro.props;
 			&::after {
 				display: none;
 			}
+		}
+	}
+
+	button a {
+		border-bottom: none;
+		color: inherit;
+
+		&::after {
+			display: none;
+		}
+
+		&:hover {
+			border-bottom: none;
 		}
 	}
 
