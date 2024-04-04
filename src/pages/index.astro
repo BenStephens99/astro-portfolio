@@ -18,19 +18,28 @@ const homeSections = await getHomeSections();
 				I specialise in building fast, accessible, SEO-friendly and
 				user-friendly websites & applications.
 			</p>
-			<button class="large">View Work</button>
 		</div>
-		{homeSections.map((section) => (
-			<HomeSection section={section} />
-		))}
+		<div class="home-sections">
+			{homeSections.map((section) => (
+				<HomeSection section={section} />
+			))}
+		</div>
 	</main>
 </Layout>
 
 <style lang="scss">
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+		align-items: center;
+		max-width: var(--content-width);
+		margin: auto;
+		margin-bottom: 4rem;
+	}
+
 	.introduction {
 		max-width: 800px;
-		margin: 2rem auto;
-		padding-bottom: 2rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -57,5 +66,14 @@ const homeSections = await getHomeSections();
 			background-color: var(--accent);
 			color: var(--secondary);
 		}
+	}
+
+	.home-sections {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		max-width: 1000px;
+		width: 100%;
+		padding: 0rem 2rem;
 	}
 </style>
