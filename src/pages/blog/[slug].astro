@@ -1,0 +1,55 @@
+---
+import { getPosts } from "../../utils/sanity.js";
+import Layout from "../../layouts/Layout.astro";
+import { urlFor } from "../../utils/image";
+import { PortableText } from "astro-portabletext";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+
+  return posts.map(({ slug, title, image, body }) => {
+    return {
+      params: { slug: slug.current },
+      props: {
+        title,
+        image: urlFor(image).width(400).url(),
+        body,
+      },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { title } = Astro.props;
+const { image } = Astro.props;
+const { body } = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="post">
+    <a href="/blog" class="no-underline">
+      <button> Back </button>
+    </a>
+    <h1>{title}</h1>
+    <img src={image} alt={title} transition:name=`${title}-image` />
+    <article>
+      <PortableText value={body} />
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .post {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  img {
+    max-width: 400px;
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostList from "../../components/PostList.astro";
+---
+
+<Layout title="Ben Stephens">
+	<div class="blog-post-list">
+		<PostList />
+	</div>
+</Layout>
+
+<style lang="scss">
+	.blog-post-list {
+		width: 100%;
+		max-width: var(--content-width);
+		margin: auto;
+		padding: 2rem;
+	}
+</style>

@@ -2,48 +2,55 @@
 import Layout from "../layouts/Layout.astro";
 import HomeSection from "../components/HomeSection.astro";
 import { getHomeSections } from "../utils/sanity";
+import { PortableText } from "astro-portabletext";
+import { urlFor } from "../utils/image";
 
 const homeSections = await getHomeSections();
 
+const heroSection = homeSections.shift();
 ---
 
 <Layout title="Ben Stephens">
-	<main>
-		<div class="introduction">
-			<h1><span class="lighter">Web</span> Developer</h1>
-			<p>
-				Hi, I'm Ben, a Brighton based Web Developer.
-			</p>
-			<p>
-				I specialise in building fast, accessible, SEO-friendly and
-				user-friendly websites & applications.
-			</p>
+	<div class="introduction">
+		<h1><span class="lighter">Web</span> Developer</h1>
+		<p>Hi, I'm Ben, a Brighton based Web Developer.</p>
+		<p>
+			I specialise in building fast, accessible, SEO-friendly and
+			user-friendly websites & applications.
+		</p>
+	</div>
+	<section class="hero-section">
+		<div class="container">
+			<div class="left">
+				<h2>
+					{heroSection.title}
+				</h2>
+				<PortableText value={heroSection.body} />
+				<a href={heroSection.slug.current} class="no-underline">
+					<button>
+						{heroSection.buttonText}
+					</button>
+				</a>
+			</div>
+			<img src={urlFor(heroSection.image).width(800).url()} >
 		</div>
-		<div class="home-sections">
-			{homeSections.map((section) => (
-				<HomeSection section={section} />
-			))}
+	</section>
+	<div class="home-sections">
+		<div class="container">
+			{homeSections.map((section) => <HomeSection section={section} />)}
 		</div>
-	</main>
+	</div>
 </Layout>
 
 <style lang="scss">
-	main {
-		display: flex;
-		flex-direction: column;
-		gap: 4rem;
-		align-items: center;
-		max-width: var(--content-width);
-		margin: auto;
-		margin-bottom: 4rem;
-	}
-
 	.introduction {
 		max-width: 800px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+		margin: auto;
+		margin-bottom: 4rem;
 
 		h1 {
 			font-size: 60px;
@@ -67,13 +74,54 @@ const homeSections = await getHomeSections();
 			color: var(--secondary);
 		}
 	}
+	
+	.container {
+		max-width: var(--content-width);
+		margin: auto;
+		padding: 2rem;
+	}
+
+	.hero-section {
+		background: var(--accent-light);
+		width: 100vw;
+
+		h2 {
+			font-size: 40px;
+			margin-bottom: 1rem;
+		}
+
+		.left {
+			display: flex;
+			flex-direction: column;
+		}
+
+		a {
+			margin-top: auto;
+		}
+
+		button {
+			color: var(--secondary);
+			background-color: var(--accent);
+		}
+
+		.container {
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+		}
+
+		img {
+			aspect-ratio: 5/3;
+			object-fit: cover;
+			max-height: 400px;
+		}
+	}
 
 	.home-sections {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2rem;
-		max-width: 1000px;
-		width: 100%;
-		padding: 0rem 2rem;
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 2rem;
+		}
 	}
 </style>

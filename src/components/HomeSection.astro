@@ -1,71 +1,47 @@
 ---
-    import { urlFor } from '../utils/image';
-    import { PortableText } from 'astro-portabletext'
-    
-    const { section } = Astro.props;
+import { urlFor } from "../utils/image";
+import { PortableText } from "astro-portabletext";
+
+const { section } = Astro.props;
 ---
 
 <section class="home-section">
-    <div class="container"
-        style=`background-image: url(${urlFor(section.image).width(550).url()});`
-    >
-        <div class="text-container">
-            <h2>
-                <a href={section.slug.current} class="no-underline">
-                    {section.title}
-                </a>
-            </h2>
-            <PortableText value={section.body} />
-            <button>
-                <a href={section.slug.current}>{section.buttonText}</a>
-            </button>
-        </div>
+    <div>
+        <h2>
+            <a href={section.slug.current} class="no-underline">
+                {section.title}
+            </a>
+        </h2>
+        <PortableText value={section.body} />
     </div>
+    <a href={section.slug.current} class="no-underline section-link">
+        <button>
+            {section.buttonText}
+        </button>
+    </a>
 </section>
 
 <style lang="scss">
     .home-section {
-        width: 100%;
-        color: var(--secondary);
-        aspect-ratio: 5/4;
-        overflow: hidden;
-        border-radius: 2rem;
-    }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+        background-color: var(--accent-light);
+        padding: 2rem;
 
-    .container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        background-size: cover;
-        background-position: center;
-        overflow: hidden;
-        transition: 0.3s;
-    }
-
-    h2 {
-        font-weight: 800;
-        
         a {
+            width: fit-content;
+        }
+
+        .section-link {
+            margin-left: auto;
+        }
+
+        button {
+            margin-left: auto;
+            background-color: var(--accent);
             color: var(--secondary);
         }
-    }
-
-    .text-container {
-        background-color: rgba(61, 57, 41, 0.9);
-        width: 100%;
-        height: 50%;
-        padding: 2rem 2rem 1rem 2rem;
-        display: flex;
-        margin-top: auto;
-        flex-direction: column;
-        transition: 0.3s;
-    }
-
-    button {
-        color: var(--secondary);
-        background-color: var(--accent);
-        align-self: flex-end;
-        margin-top: auto;
     }
 </style>
