@@ -1,9 +1,12 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
 }
+
+const currentPath = Astro.url.pathname.split("/")[1] || "/";
+console.log(currentPath);
 
 const { title } = Astro.props;
 ---
@@ -22,165 +25,186 @@ const { title } = Astro.props;
 	<body>
 		<header>
 			<nav>
-				<a href="/" class="no-underline"><h1>Ben Stephens</h1></a>
+				<a href="/" class="no-underline"><h2>Ben Stephens</h2></a>
 				<div>
-					<a href="/projects">Projects</a>
-					<a href="/blog">Blog</a>
-					<a href="/about">About</a>
-					<a href="/contact" class="no-underline">
+					<a class={currentPath === 'projects' ? 'current-page' : ''} href="/projects">Projects</a>
+					<a class={currentPath === 'blog' ? 'current-page' : ''} href="/blog">Blog</a>
+					<a class={currentPath === 'about' ? 'current-page' : ''} href="/about">About</a>
+					<a class=`no-underline ${currentPath === 'contact' ? 'current-page' : ''}` href="/contact">
 						<button>Contact</button>
 					</a>
 				</div>
 			</nav>
 		</header>
-		<main transition:animate='fade'>
+		<main transition:animate="fade">
 			<slot />
 		</main>
 		<footer>
 			<p>© Ben Stephens 2024</p>
 		</footer>
-	</body>
-</html>
+	</body><style lang="scss">
+		header {
+			width: 100%;
+			max-width: var(--content-width);
+			padding: 1rem 2rem;
+			position: sticky;
+			top: 0px;
+			background-color: rgba(239, 237, 228, 0.8);
+			backdrop-filter: blur(5px);
+			z-index: 100;
+		}
 
-<style lang="scss">
-	header {
-		width: 100%;
-		max-width: var(--content-width);
-		padding: 1rem 2rem;
-		position: sticky;
-		top: 0px;
-		background-color: rgba(239, 237, 228, 0.8);
-		backdrop-filter: blur(5px);
-		z-index: 100;
-	}
-
-	nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		div {
+		nav {
 			display: flex;
+			justify-content: space-between;
 			align-items: center;
-			gap: 20px;
-		}
-	}
 
-	button {
-		border: 2px solid var(--accent);
-		color: var(--accent);
-	}
-
-</style>
-
-<style is:global lang="scss">
-	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-	:root {
-		--content-width: 1450px;
-
-		--primary: #3D3929;
-		--secondary: #EFEDE4;
-		--accent: #C86341;
-		--accent-light: #EBE3DB;
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-	
-	body {
-		background-color: #EFEDE4;
-		color: var(--primary);
-		font-family: "Inter", sans-serif;
-		margin: 0 auto;
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
-	main {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 4rem;
-		width: 100%;
-	}
-
-	footer {
-		background-color: rgb(30, 30, 30);
-		color: white;
-		text-align: center;
-		padding: 2rem;
-		width: 100%;
-		margin-top: auto;
-	}
-
-	h1, h2, h3, h4 {
-		font-family: "Montserrat", sans-serif;
-		margin: 0;
-		font-weight: 300;
-	}	
-	
-	a {
-		text-decoration: none;
-		color: #3D3929;
-		border-bottom: 2px solid transparent;
-		transition: border-bottom 0.2s;
-
-		&::after {
-			content: "";
-			display: block;
-			width: 0;
-			margin-top: 3px;
-			height: 2px;
-			background-color: var(--accent);
-			transition: width 0.3s;
-		}
-
-		&:hover {
-			&::after {
-				width: 100%;
+			div {
+				display: flex;
+				align-items: center;
+				gap: 20px;
 			}
 		}
 
-		&.no-underline {
+		button {
+			border: 2px solid var(--accent);
+			color: var(--accent);
+		}
+	</style>
+
+	<style is:global lang="scss">
+		@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+		@import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+		:root {
+			--content-width: 1450px;
+
+			--primary: #3d3929;
+			--secondary: #efede4;
+			--accent: #c86341;
+			--accent-light: #ebe3db;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #efede4;
+			color: var(--primary);
+			font-family: "Inter", sans-serif;
+			margin: 0 auto;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			overflow-y: scroll;
+		}
+
+		main {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 4rem;
+			width: 100%;
+		}
+
+		footer {
+			background-color: rgb(30, 30, 30);
+			color: white;
+			text-align: center;
+			padding: 2rem;
+			width: 100%;
+			margin-top: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			font-family: "Montserrat", sans-serif;
+			margin: 0;
+			font-weight: 300;
+		}
+
+		h1 {
+			font-size: 60px;
+			font-weight: 400;
+			letter-spacing: -5px;
+
+			.lighter {
+				font-weight: 300;
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: #3d3929;
+			border-bottom: 2px solid transparent;
+			transition: border-bottom 0.2s;
+
+			&::after {
+				content: "";
+				display: block;
+				width: 0;
+				margin-top: 3px;
+				height: 2px;
+				background-color: var(--accent);
+				transition: width 0.3s;
+			}
+
+			&:hover {
+				&::after {
+					width: 100%;
+				}
+			}
+
+			&.no-underline {
+				&::after {
+					display: none;
+				}
+			}
+
+			&.current-page {
+				&::after {
+					width: 100%;
+				}
+			}
+		}
+
+		button a {
+			border-bottom: none;
+			color: inherit;
+
 			&::after {
 				display: none;
 			}
-		}
-	}
 
-	button a {
-		border-bottom: none;
-		color: inherit;
-
-		&::after {
-			display: none;
+			&:hover {
+				border-bottom: none;
+			}
 		}
 
-		&:hover {
-			border-bottom: none;
-		}
-	}
+		button {
+			font-weight: 600;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			background: transparent;
+			transition: 0.3s scale;
+			width: fit-content;
 
-	button {
-		font-weight: 600;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-		background: transparent;
-		transition: 0.3s scale;
-		width: fit-content;
+			&:hover {
+				scale: 1.05;
+			}
 
-		&:hover {
-			scale: 1.05;
+			&:active {
+				scale: 0.95;
+			}
 		}
 
-		&:active {
-			scale: 0.95;
+		img {
+			border-radius: 10px;
 		}
-	}
-</style>
+	</style>
+</html>

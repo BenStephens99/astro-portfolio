@@ -4,12 +4,21 @@ import PostList from "../../components/PostList.astro";
 ---
 
 <Layout title="Ben Stephens">
+	<h1>Blog <span class="lighter">Posts</span></h1>
 	<div class="blog-post-list">
 		<PostList />
 	</div>
 </Layout>
 
 <style lang="scss">
+    h1 {
+		margin-top: 3rem;
+        font-weight: 400;
+        letter-spacing: -5px;
+        font-size: 60px;
+        text-align: center;
+    }
+
 	.blog-post-list {
 		width: 100%;
 		max-width: var(--content-width);

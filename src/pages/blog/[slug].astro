@@ -12,7 +12,7 @@ export async function getStaticPaths() {
       params: { slug: slug.current },
       props: {
         title,
-        image: urlFor(image).width(400).url(),
+        image: urlFor(image).width(800).url(),
         body,
       },
     };
@@ -27,18 +27,22 @@ const { body } = Astro.props;
 
 <Layout title={title}>
   <div class="post">
-    <a href="/blog" class="no-underline">
-      <button> Back </button>
-    </a>
-    <h1>{title}</h1>
-    <img src={image} alt={title} transition:name=`${title}-image` />
-    <article>
-      <PortableText value={body} />
-    </article>
+    <div class="post-title">
+      <a href="/blog" class="no-underline">
+        <button>Back</button>
+      </a>
+      <h1><span class="lighter">{title}</span></h1>
+    </div>
+    <div class="post-content">
+      <img src={image} alt={title} transition:name=`${title}-image` />
+      <article>
+        <PortableText value={body} />
+      </article>
+    </div>
   </div>
 </Layout>
 
-<style>
+<style lang="scss">  
   .post {
     display: flex;
     flex-direction: column;
@@ -49,8 +53,34 @@ const { body } = Astro.props;
     padding: 2rem;
   }
 
+  h1 {
+    margin: 1rem 0;
+  }
+
+  .post-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    a {
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .post-content {
+    width: 100%;
+    max-width: 600px;
+    align-self: center;
+  }
+
   img {
-    max-width: 400px;
+    width: 100%;
+    object-fit: cover;
+    margin: auto;
   }
 
   button {

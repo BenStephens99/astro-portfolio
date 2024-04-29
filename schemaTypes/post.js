@@ -29,6 +29,11 @@ export default defineType({
       type: 'image',
     }),
     defineField({
+      name: 'summary',
+      title: 'Summary',
+      type: 'text',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
