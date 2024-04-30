@@ -8,7 +8,7 @@ export const sanityClient = createClient({
 });
 
 export async function getPosts() {
-    const posts = await sanityClient.fetch('*[_type == "blog"]')
+    const posts = await sanityClient.fetch('*[_type == "blog"] | order(publishedAt desc)')
     return posts
   }
 
