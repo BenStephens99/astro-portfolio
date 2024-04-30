@@ -1,28 +1,16 @@
 ---
-import { getPosts } from "../../utils/sanity.js";
+import { getPost } from "../../utils/sanity";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../utils/image";
 import { PortableText } from "astro-portabletext";
 
-export async function getStaticPaths() {
-  const posts = await getPosts();
-
-  return posts.map(({ slug, title, image, body }) => {
-    return {
-      params: { slug: slug.current },
-      props: {
-        title,
-        image: urlFor(image).width(800).url(),
-        body,
-      },
-    };
-  });
-}
-
 const { slug } = Astro.params;
-const { title } = Astro.props;
-const { image } = Astro.props;
-const { body } = Astro.props;
+
+const post = await getPost(slug);
+
+const title = post.title;
+const image = urlFor(post.image).width(800).url();
+const body = post.body;
 ---
 
 <Layout title={title}>
@@ -73,18 +61,19 @@ const { body } = Astro.props;
 
   .post-content {
     width: 100%;
-    max-width: 600px;
+    max-width: 580px;
     align-self: center;
   }
 
   img {
     width: 100%;
+    aspect-ratio: 10/7;
     object-fit: cover;
     margin: auto;
   }
 
   button {
     background-color: var(--accent);
-    color: var(--secondary);
+    color: white;
   }
 </style>

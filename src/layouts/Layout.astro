@@ -45,11 +45,11 @@ const { title } = Astro.props;
 	</body><style lang="scss">
 		header {
 			width: 100%;
+			background-color: rgba(239, 237, 228, 0.5);
 			max-width: var(--content-width);
 			padding: 1rem 2rem;
 			position: sticky;
 			top: 0px;
-			background-color: rgba(239, 237, 228, 0.8);
 			backdrop-filter: blur(5px);
 			z-index: 100;
 		}
@@ -67,8 +67,8 @@ const { title } = Astro.props;
 		}
 
 		button {
-			border: 2px solid var(--accent);
 			color: var(--accent);
+			border: 2px solid var(--accent);
 		}
 	</style>
 
@@ -79,9 +79,9 @@ const { title } = Astro.props;
 		:root {
 			--content-width: 1450px;
 
-			--primary: #3d3929;
-			--secondary: #efede4;
-			--accent: #c86341;
+			--primary: #3d3928;
+			--secondary: #efede5;
+			--accent: #be5d38;
 			--accent-light: #ebe3db;
 		}
 
@@ -90,7 +90,7 @@ const { title } = Astro.props;
 		}
 
 		body {
-			background-color: #efede4;
+			background-color: var(--secondary);
 			color: var(--primary);
 			font-family: "Inter", sans-serif;
 			margin: 0 auto;
@@ -134,6 +134,10 @@ const { title } = Astro.props;
 			.lighter {
 				font-weight: 300;
 			}
+		}
+
+		h2 {
+			font-weight: 400;
 		}
 
 		a {
