@@ -26,8 +26,10 @@ for (const post of posts) {
 
 <style lang="scss">
     ul {
-        display: flex;
-        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 320px);
+        justify-content: center;
+        gap: 2rem;
         padding: 0px;
 
         li {
