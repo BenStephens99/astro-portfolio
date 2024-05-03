@@ -17,6 +17,16 @@ export async function getPost(slug) {
     return post
   }
 
+export async function getProjects() {
+  //order by date and expand projectType array
+  const projects = await sanityClient.fetch(`*[_type == "project"] | order(date desc) { 
+    ..., 
+    projectType->{type},
+    technologies[]->{name, icon} 
+  }`)
+  return projects
+}
+
 export async function getHomeSections() {
     const homeSections = await sanityClient.fetch('*[_type == "homeSection"] | order(_updatedAt desc)')
     return homeSections

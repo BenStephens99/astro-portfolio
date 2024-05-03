@@ -1,0 +1,30 @@
+--- 
+import Layout from "../../layouts/Layout.astro";
+import { getProjects } from "../../utils/sanity";
+import ProjectList from "../../components/ProjectList.svelte";
+
+const projects = await getProjects();
+
+const webApplications = projects.filter(project => project.projectType.type === "Web Application");
+---
+
+<Layout title="Projects">
+    <div class="projects">
+        <h1><span class="lighter">My</span> Projects </h1>
+        <h2>Web applications</h2>
+        <ProjectList projects={webApplications} />
+    </div>
+</Layout>   
+
+<style lang="scss">
+    .projects {
+        max-width: var(--content-width);
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+</style>
