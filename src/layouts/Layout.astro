@@ -6,7 +6,6 @@ interface Props {
 }
 
 const currentPath = Astro.url.pathname.split("/")[1] || "/";
-console.log(currentPath);
 
 const { title } = Astro.props;
 ---
@@ -17,7 +16,7 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico?" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ViewTransitions />
@@ -58,8 +57,6 @@ const { title } = Astro.props;
 			header {
 				width: 100%;
 				background-color: rgba(239, 237, 228, 0.5);
-				max-width: var(--content-width);
-				padding: 1rem 2rem;
 				position: sticky;
 				top: 0px;
 				backdrop-filter: blur(5px);
@@ -69,6 +66,9 @@ const { title } = Astro.props;
 			nav {
 				display: flex;
 				justify-content: space-between;
+				padding: 1rem 2rem;
+				margin: auto;
+				max-width: var(--content-width);
 				align-items: center;
 
 				div {
