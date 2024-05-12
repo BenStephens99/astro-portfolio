@@ -11,17 +11,28 @@ export default defineType({
             type: 'string',
         }),
         defineField({
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',            
+            options: {
+                source: 'title',
+            },
+        }),
+        defineField({
+            name: 'openInNewTab',
+            title: 'Open in New Tab',
+            type: 'boolean',
+        }),
+        defineField({
             name: 'date',
             title: 'Date',
             type: 'date',
         }),
         defineField({
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-                source: 'title',
-            },
+            name: 'technologies',
+            title: 'Technologies',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'technology' }] }],
         }),
         defineType({
             name: 'projectType',
@@ -33,12 +44,9 @@ export default defineType({
             name: 'thumbnail',
             title: 'Thumbnail',
             type: 'image',
-        }),
-        defineField({
-            name: 'images',
-            title: 'Images',
-            type: 'array',
-            of: [{ type: 'image' }],
+            options: {
+                hotspot: true,
+            },
         }),
         defineField({
             name: 'summary',
@@ -46,16 +54,16 @@ export default defineType({
             type: 'text',
         }),
         defineField({
-            name: 'body',
-            title: 'Body',
+            name: 'sections',
+            title: 'Sections',
             type: 'array',
-            of: [{ type: 'block' }],
+            of: [{ type: 'projectSection' }],
         }),
         defineField({
-            name: 'technologies',
-            title: 'Technologies',
+            name: 'images',
+            title: 'Images',
             type: 'array',
-            of: [{ type: 'reference', to: [{ type: 'technology' }] }],
+            of: [{ type: 'image' }],
         }),
     ],
 })

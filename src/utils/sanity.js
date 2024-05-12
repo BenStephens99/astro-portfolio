@@ -27,6 +27,16 @@ export async function getProjects() {
   return projects
 }
 
+export async function getProject(slug) {
+  const project = await sanityClient.fetch(`*[_type == "project" && slug.current == $slug][0] {
+    ..., 
+    projectType->{type},
+    technologies[]->{name, icon},
+    projectSections[]->{body, images, imageCaption}
+  }`, { slug })
+  return project
+}
+
 export async function getHomeSections() {
     const homeSections = await sanityClient.fetch('*[_type == "homeSection"] | order(_updatedAt desc)')
     return homeSections
