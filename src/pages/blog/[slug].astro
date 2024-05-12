@@ -9,7 +9,7 @@ const { slug } = Astro.params;
 const post = await getPost(slug);
 
 const title = post.title;
-const image = urlFor(post.image).width(800).url();
+const image = urlFor(post.image).width(800).auto('format').url();
 const body = post.body;
 ---
 
