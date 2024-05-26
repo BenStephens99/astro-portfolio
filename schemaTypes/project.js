@@ -34,12 +34,6 @@ export default defineType({
             type: 'array',
             of: [{ type: 'reference', to: [{ type: 'technology' }] }],
         }),
-        defineType({
-            name: 'projectType',
-            title: 'Project Type',
-            type: 'reference',
-            to: [{ type: 'projectType' }],
-        }),
         defineField({
             name: 'thumbnail',
             title: 'Thumbnail',

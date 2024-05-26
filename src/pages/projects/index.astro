@@ -1,31 +1,28 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getProjects } from "../../utils/sanity";
+import { getProjects, getProjectTypes } from "../../utils/sanity";
 import ProjectList from "../../components/ProjectList.svelte";
+import { urlFor } from "../../utils/image";
 
-const projects = await getProjects();
 
-const webApplications = projects.filter(
-    (project) => project.projectType.type === "Web Application",
-);
-const webSites = projects.filter(
-    (project) => project.projectType.type === "Web Site",
-);
+let projectTypes = await getProjectTypes();   
 
-console.log(webSites);
+projectTypes = projectTypes.sort((a, b) => a.sortOrder - b.sortOrder);
 ---
 
 <Layout title="Projects">
     <div class="projects">
         <h1><span class="lighter">My</span> Projects</h1>
-        <div>
-            <h2>Web applications</h2>
-            <ProjectList projects={webApplications} />
-        </div>
-        <div>
-            <h2>Websites</h2>
-            <ProjectList projects={webSites} />
-        </div>
+        {projectTypes.map((projectType) => (
+            <div>
+                <div class="project-title">
+                    <h2>{projectType.type}</h2>
+                    {projectType?.icon && <img src={urlFor(projectType.icon).height(200).url()} alt={projectType.type} />}
+                </div>
+                <p>{projectType.description}</p>
+                <ProjectList projects={projectType.projects} />
+            </div>
+        ))}
     </div>
 </Layout>
 
@@ -48,8 +45,25 @@ console.log(webSites);
     h2 {
         font-size: 1.8rem;
         font-weight: 300;
-        border-bottom: 2px solid var(--accent);
         padding-bottom: 2px;
         width: fit-content;
+    }
+
+    p {
+        margin-top: 0.5rem;
+        margin-bottom: 0rem;
+    }
+
+    .project-title {
+        border-bottom: 2px solid var(--accent);
+        width: fit-content;
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+
+        img {
+            height: 25px;
+            padding-right: 0.5rem;
+        }
     }
 </style>

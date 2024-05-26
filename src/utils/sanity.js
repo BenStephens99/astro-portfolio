@@ -42,3 +42,14 @@ export async function getHomeSections() {
     return homeSections
   }
 
+  export async function getProjectTypes() {
+    const projectTypes = await sanityClient.fetch(`*[_type == "projectType"]{
+      ...,
+      projects[]->{
+        ...,
+        technologies[]->{name, icon}
+      }
+    }`);
+    return projectTypes;
+  }
+

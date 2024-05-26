@@ -7,8 +7,6 @@ import { getProject } from "../../utils/sanity";
 const { slug } = Astro.params;
 
 const project = await getProject(slug);
-
-console.log(project);
 ---
 
 <Layout title={project.title}>
@@ -17,7 +15,7 @@ console.log(project);
         <h2>{project.title}</h2>
         <img class="thumbnail" src={urlFor(project.thumbnail).width(800).auto('format').url()} alt={project.title} transition:name={project._id}/>
         <article>
-            {project.sections.map
+            {project?.sections?.map
                 (section => (
                     <div class="project-section">
                         {section?.body ? 

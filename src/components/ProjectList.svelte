@@ -1,13 +1,12 @@
 <script>
     import { urlFor } from "../utils/image";
-    export let projects = [];
-    console.log(projects);
+    export let projects = []; 
 </script>
 
 <div class="projects-list">
     {#each projects || [] as project}
         <a
-            href={`${project.openInNewTab ? "" : "/projects/"}${project.slug.current}`}
+            href={`${project.openInNewTab ? "" : "/projects/"}${project.slug?.current}`}
             target={project.openInNewTab ? "_blank" : "_self"}
             class="project no-underline"
         >
@@ -29,7 +28,12 @@
                     </div>
                 {/if}
                 <div>
-                    <h3>{project.title}</h3>
+                    <div class="project-title">
+                        <h3>{project.title}</h3>
+                        {#if project.openInNewTab}
+                            <svg fill="#3D3928" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M14.21 1.5H10v1.25h3.08L7.9 7.21l.82 1 5.53-4.77V7h1.25V2.79a1.29 1.29 0 0 0-1.29-1.29z"></path><path d="M12.25 13.25H1.75v-8.5H7.5V3.5h-6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4h-1.25z"></path></g></svg>
+                        {/if}
+                    </div>
                     <div class="summary">{project.summary || ""}</div>
                 </div>
             </div>
@@ -42,7 +46,6 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
         gap: 1rem;
-        margin-top: 1rem;
     }
 
     .project {
@@ -70,6 +73,17 @@
     .project:hover {
         .thumbnail {
             transform: translateY(-5px);
+        }
+    }
+
+    .project-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        svg {
+            width: 20px;
+            height: 20px;
         }
     }
 
