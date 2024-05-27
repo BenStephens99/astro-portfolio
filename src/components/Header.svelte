@@ -68,6 +68,10 @@
         max-width: var(--content-width);
         align-items: center;
 
+        @media (max-width: 650px) {
+            padding: 1rem;
+        }
+
         div {
             display: flex;
             align-items: center;
