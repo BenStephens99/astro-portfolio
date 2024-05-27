@@ -34,7 +34,9 @@ const heroSection = homeSections.shift();
 					</button>
 				</a>
 			</div>
-			<img src={urlFor(heroSection.image).width(800).auto('format').url()} alt="Hero Image">
+			<div class="right">
+				<img src={urlFor(heroSection.image).width(1200).auto('format').url()} alt="Hero Image">
+			</div>
 		</div>
 	</section>
 	<div class="home-sections">
@@ -87,6 +89,17 @@ const heroSection = homeSections.shift();
 		.left {
 			display: flex;
 			flex-direction: column;
+
+			@media (max-width: 900px) {
+				grid-template-columns: 1fr;
+				align-items: center;
+			}
+		}
+
+		.right {
+			width: 100%;
+			display: flex;
+			justify-content: center;
 		}
 
 		a {
@@ -99,23 +112,36 @@ const heroSection = homeSections.shift();
 		}
 
 		.container {
-			display: flex;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			gap: 2rem;
+
+			@media (max-width: 900px) {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		img {
-			aspect-ratio: 5/3;
+			aspect-ratio: 5/4;
 			object-fit: cover;
 			max-height: 400px;
+
+			@media (max-width: 900px) {
+				max-height: 300px;
+				aspect-ratio: 5/3;
+				max-width: 100%;
+			}
 		}
 	}
 
 	.home-sections {
 		.container {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
+			display: flex;
 			gap: 2rem;
+
+			@media (max-width: 900px) {
+				flex-wrap: wrap;
+			}
 		}
 	}
 </style>

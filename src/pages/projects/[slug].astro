@@ -13,7 +13,7 @@ const project = await getProject(slug);
     <div class="project">
         <a href="/projects" class="no-underline"><button>Back</button></a>
         <h2>{project.title}</h2>
-        <img class="thumbnail" src={urlFor(project.thumbnail).width(800).auto('format').url()} alt={project.title} transition:name={project._id}/>
+        <img class="thumbnail" src={urlFor(project.thumbnail).width(1000).auto('format').url()} alt={project.title} transition:name={`a${project._id}`}/>
         <article>
             {project?.sections?.map
                 (section => (
@@ -28,7 +28,7 @@ const project = await getProject(slug);
                                 <div class="section-gallery__images">
                                     {section?.images?.map
                                         (image => (
-                                            <img src={urlFor(image).width(1200).auto('format').url()} alt={section.imageCaption} />
+                                            <img src={urlFor(image).width(1400).auto('format').url()} alt={section.imageCaption} />
                                         ))
                                     }
                                 </div>
@@ -76,6 +76,8 @@ const project = await getProject(slug);
     .thumbnail {
         width: 100%;
         max-width: 600px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
     }
 
     article {

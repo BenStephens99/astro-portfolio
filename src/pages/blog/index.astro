@@ -1,12 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import PostList from "../../components/PostList.astro";
+import PostList from "../../components/PostList.svelte";
+
+import { getPosts } from "../../utils/sanity";
+
+const posts = await getPosts();
 ---
 
 <Layout title="Ben Stephens">
 	<h1>Blog <span class="lighter">Posts</span></h1>
 	<div class="blog-post-list">
-		<PostList />
+		<PostList {posts}/>
 	</div>
 </Layout>
 

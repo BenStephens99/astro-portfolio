@@ -1,26 +1,26 @@
---- 
-
-import { getPosts } from "../utils/sanity";
+<script>
 import { urlFor } from "../utils/image";
 
-const posts = await getPosts();
+export let posts = [];
 
 for (const post of posts) {
     post.image.url = urlFor(post.image).height(400).url();
 }
---- 
+</script>
+
 <div class="post-list">
     <ul>
-        {posts.map((post) => (
+        {#each posts as post}
             <li>
                 <a href={`/blog/${post.slug.current}`} class="no-underline post-item">
-                    <img src={post.image.url} alt={post.title} transition:name={`${post.title}-image`}/>    
+                    <img src={post.image.url} alt={post.title}  style="view-transition-name:image-{post._id};"/>    
+                    
                     <datetime>{new Date(post.publishedAt).toLocaleDateString()}</datetime>
                     <h3>{post.title}</h3>
                     <div>{post.summary}</div>
                 </a>
             </li>
-        ))}
+        {/each}
     </ul>
 </div>
 

@@ -12,9 +12,9 @@
         >
             <img
                 class="thumbnail"
-                src={urlFor(project.thumbnail).height(400).url()}
+                src={urlFor(project.thumbnail).height(500).url()}
                 alt={project.title}
-                style="view-transition-name:{project._id};"
+                style="view-transition-name:a{project._id};"
             />
             <div class="project-body">
                 {#if project?.technologies?.length}
@@ -44,8 +44,12 @@
 <style lang="scss">
     .projects-list {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
+        grid-template-columns: repeat(auto-fill, 350px);
         gap: 1rem;
+
+        @media screen and (max-width: 650px){
+            grid-template-columns: 1fr;
+        }
     }
 
     .project {
@@ -88,7 +92,7 @@
     }
 
     .thumbnail {
-        aspect-ratio: 5/3;
+        aspect-ratio: 16/9;
         object-fit: cover;
         width: 100%;
         z-index: 2;
