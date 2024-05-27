@@ -4,7 +4,7 @@ import { urlFor } from "../utils/image";
 export let posts = [];
 
 for (const post of posts) {
-    post.image.url = urlFor(post.image).height(400).url();
+    post.image.url = urlFor(post.image).auto('format').height(400).url();
 }
 </script>
 

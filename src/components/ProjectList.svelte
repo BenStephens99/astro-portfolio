@@ -12,7 +12,7 @@
         >
             <img
                 class="thumbnail"
-                src={urlFor(project.thumbnail).height(500).url()}
+                src={urlFor(project.thumbnail).auto('format').height(500).url()}
                 alt={project.title}
                 style="view-transition-name:a{project._id};"
             />
@@ -21,7 +21,7 @@
                     <div class="tech-stack">
                         {#each project.technologies || [] as technology}
                             <img
-                                src={urlFor(technology.icon).height(50).url()}
+                                src={urlFor(technology.icon).auto('format').height(50).url()}
                                 alt={technology.name}
                             />
                         {/each}
