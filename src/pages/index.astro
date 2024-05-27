@@ -13,11 +13,13 @@ const heroSection = homeSections.shift();
 <Layout title="Ben Stephens">
 	<div class="introduction">
 		<h1><span class="lighter">Web</span> Developer</h1>
-		<p>Hi, I'm Ben, a Brighton based Web Developer.</p>
-		<p>
-			I specialise in building fast, accessible, SEO-friendly and
-			user-friendly websites & applications.
-		</p>
+		<div>
+			<p>Hi, I'm Ben, a Brighton based Web Developer.</p>
+			<p>
+				I specialise in building fast, accessible, SEO-friendly and
+				user-friendly websites & applications.
+			</p>
+		</div>
 	</div>
 	<section class="hero-section">
 		<div class="container">
@@ -35,7 +37,13 @@ const heroSection = homeSections.shift();
 				</a>
 			</div>
 			<div class="right">
-				<img src={urlFor(heroSection.image).width(1200).auto('format').url()} alt="Hero Image">
+				<img
+					src={urlFor(heroSection.image)
+						.width(1200)
+						.auto("format")
+						.url()}
+					alt="Hero Image"
+				/>
 			</div>
 		</div>
 	</section>
@@ -60,9 +68,11 @@ const heroSection = homeSections.shift();
 			margin-bottom: 1rem;
 		}
 
-		p {
-			font-size: 24px;
-			margin: 0.5rem;
+		@media (min-width: 650px) {
+			p {
+				font-size: 24px;
+				margin: 0.5rem;
+			}
 		}
 
 		button {
@@ -71,7 +81,7 @@ const heroSection = homeSections.shift();
 			color: white;
 		}
 	}
-	
+
 	.container {
 		max-width: var(--content-width);
 		margin: auto;
