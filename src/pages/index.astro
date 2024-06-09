@@ -5,9 +5,8 @@ import { getHomeSections } from "../utils/sanity";
 import { PortableText } from "astro-portabletext";
 import { urlFor } from "../utils/image";
 
-const homeSections = await getHomeSections();
-
-const heroSection = homeSections.shift();
+let homeSections = await getHomeSections();
+homeSections.sort((a, b) => a.sortIndex - b.sortIndex);
 ---
 
 <Layout title="Ben Stephens">
@@ -21,36 +20,8 @@ const heroSection = homeSections.shift();
 			</p>
 		</div>
 	</div>
-	<section class="hero-section">
-		<div class="container">
-			<div class="left">
-				<h2>
-					{heroSection.title}
-				</h2>
-				<div>
-					<PortableText value={heroSection.body} />
-				</div>
-				<a href={heroSection.slug.current} class="no-underline">
-					<button>
-						{heroSection.buttonText}
-					</button>
-				</a>
-			</div>
-			<div class="right">
-				<img
-					src={urlFor(heroSection.image)
-						.width(1200)
-						.auto("format")
-						.url()}
-					alt="Hero Image"
-				/>
-			</div>
-		</div>
-	</section>
 	<div class="home-sections">
-		<div class="container">
-			{homeSections.map((section) => <HomeSection section={section} />)}
-		</div>
+		{homeSections.map((section) => <HomeSection section={section} />)}
 	</div>
 </Layout>
 
@@ -84,78 +55,10 @@ const heroSection = homeSections.shift();
 			color: white;
 		}
 	}
-
-	.container {
-		max-width: var(--content-width);
-		margin: auto;
-		padding: 2rem;
-	}
-
-	.hero-section {
-		background: var(--accent-light);
-		margin-bottom: 3rem;
-
-		h2 {
-			font-size: 40px;
-		}
-
-		.left {
-			display: flex;
-			flex-direction: column;
-
-			@media (max-width: 900px) {
-				grid-template-columns: 1fr;
-				align-items: center;
-				text-align: center;
-			}
-		}
-
-		.right {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-		}
-
-		a {
-			margin-top: auto;
-		}
-
-		button {
-			color: white;
-			background-color: var(--accent);
-		}
-
-		.container {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 2rem;
-
-			@media (max-width: 900px) {
-				grid-template-columns: 1fr;
-			}
-		}
-
-		img {
-			aspect-ratio: 5/4;
-			object-fit: cover;
-			max-height: 400px;
-
-			@media (max-width: 900px) {
-				max-height: 300px;
-				aspect-ratio: 5/3;
-				max-width: 100%;
-			}
-		}
-	}
-
 	.home-sections {
-		.container {
-			display: flex;
-			gap: 2rem;
-
-			@media (max-width: 900px) {
-				flex-wrap: wrap;
-			}
-		}
+		margin-top: 4rem;
+		max-width: 1200px;
+		width: 100%;
+		margin: auto;
 	}
 </style>

@@ -34,5 +34,10 @@ export default defineType({
       type: 'array',
       of: [{type: 'block'}],
     }),
+    defineField({
+      name: "sortIndex",
+      title: "Sort Index",
+      type: "number",
+    }),
   ],
 })

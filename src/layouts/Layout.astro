@@ -59,6 +59,10 @@ const { title } = Astro.props;
 				align-items: center;
 				overflow-y: scroll;
 				font-size: 18px;
+
+				@media screen and (max-width: 650px) {
+					font-size: 16px;
+				}
 			}
 
 			main {
@@ -197,6 +201,10 @@ const { title } = Astro.props;
 
 			p {
 				line-height: 2rem;
+
+				@media screen and (max-width: 650px) {
+					line-height: 1.5rem;
+				}
 			}
 
 			li {

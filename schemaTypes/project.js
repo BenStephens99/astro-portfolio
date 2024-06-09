@@ -35,6 +35,11 @@ export default defineType({
             of: [{ type: 'reference', to: [{ type: 'technology' }] }],
         }),
         defineField({
+            name: 'github',
+            title: 'GitHub',
+            type: 'url',
+        }),
+        defineField({
             name: 'thumbnail',
             title: 'Thumbnail',
             type: 'image',
