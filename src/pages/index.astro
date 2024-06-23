@@ -2,8 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import HomeSection from "../components/HomeSection.astro";
 import { getHomeSections } from "../utils/sanity";
-import { PortableText } from "astro-portabletext";
-import { urlFor } from "../utils/image";
 
 let homeSections = await getHomeSections();
 homeSections.sort((a, b) => a.sortIndex - b.sortIndex);
@@ -60,5 +58,7 @@ homeSections.sort((a, b) => a.sortIndex - b.sortIndex);
 		max-width: 1200px;
 		width: 100%;
 		margin: auto;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

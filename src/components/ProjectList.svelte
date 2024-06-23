@@ -14,7 +14,7 @@
                 class="thumbnail"
                 src={urlFor(project.thumbnail).auto('format').height(500).url()}
                 alt={project.title}
-                style="view-transition-name:a{project._id};"
+                style="view-transition-name:image-{project._id};"
             />
             <div class="project-body">
                 {#if project?.technologies?.length}
@@ -23,6 +23,7 @@
                             <img
                                 src={urlFor(technology.icon).auto('format').height(50).url()}
                                 alt={technology.name}
+                                title={technology.name}
                             />
                         {/each}
                     </div>
@@ -44,7 +45,7 @@
 <style lang="scss">
     .projects-list {
         display: grid;
-        grid-template-columns: repeat(auto-fill, 350px);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1rem;
 
         @media screen and (max-width: 650px){

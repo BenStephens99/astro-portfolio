@@ -3,7 +3,7 @@
 
     const paths = [
         { name: "Projects", path: "/projects", button: false },
-        { name: "Blog", path: "/blog", button: false },
+        // { name: "Blog", path: "/blog", button: false },
         { name: "About", path: "/about", button: false },
         { name: "Contact", path: "/contact", button: true },
     ];
