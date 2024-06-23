@@ -183,6 +183,16 @@ const project = await getProject(slug);
             border-radius: 0px;
         }
 
+        &__images {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+
+            img {
+                max-height: 415px;
+            }
+        }
+
         &__caption {
             padding: 0 0.5rem;
             margin: 0.2rem 0;
