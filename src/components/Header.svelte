@@ -1,24 +1,24 @@
 <script>
     export let currentPath = "/";
+    export let homeSections = [];
 
-    const paths = [
-        { name: "Projects", path: "/projects", button: false },
-        // { name: "Blog", path: "/blog", button: false },
-        { name: "About", path: "/about", button: false },
-        { name: "Contact", path: "/contact", button: true },
-    ];
+    const paths = []
+
+    for (const section of homeSections) {
+        paths.push({ name: section.title, path: `/${section.slug}`, button: false });
+    }
 </script>
 
 <header>
     <nav class="desktop">
         <a href="/" class="no-underline"><h2>Ben Stephens</h2></a>
         <div>
-            {#each paths as path}
+            {#each paths as path, i}
                 <a
                     class={`${currentPath === path.path.split("/")[1] ? "current-page" : ""} ${path.button && "no-underline"}`}
                     href={path.path}
                 >
-                    {#if path.button}
+                    {#if i === paths.length - 1}
                         <button>{path.name}</button>
                     {:else}
                         {path.name}

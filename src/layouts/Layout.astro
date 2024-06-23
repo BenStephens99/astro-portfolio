@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "../components/Header.svelte";
+import { getHomeSections } from "../utils/sanity";
 
 interface Props {
 	title: string;
@@ -9,6 +10,9 @@ interface Props {
 const currentPath = Astro.url.pathname.split("/")[1] || "/";
 
 const { title } = Astro.props;
+
+let homeSections = await getHomeSections();
+homeSections.sort((a, b) => a.sortIndex - b.sortIndex);
 ---
 
 <!doctype html>
@@ -23,7 +27,7 @@ const { title } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<Header currentPath={currentPath} />
+		<Header homeSections={homeSections} currentPath={currentPath} />
 		<main transition:animate="fade">
 			<slot />
 		</main>

@@ -20,7 +20,7 @@ projectTypes = projectTypes.sort((a, b) => a.sortOrder - b.sortOrder);
                     {projectType?.icon && <img src={urlFor(projectType.icon).height(200).url()} alt={projectType.type} />}
                 </div>
                 <p>{projectType.description}</p>
-                <ProjectList projects={projectType.projects} />
+                <ProjectList projects={projectType.projects} featured={projectType.featured}/>
             </div>
         ))}
     </div>

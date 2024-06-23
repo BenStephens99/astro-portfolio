@@ -1,11 +1,9 @@
 import { defineField, defineType } from 'sanity'
-import { CodeBlockIcon } from '@sanity/icons'
 
 export default defineType({
     name: 'project',
     title: 'Projects',
-    type: 'document',
-    icon: CodeBlockIcon,
+    type: 'object',
     fields: [
         defineField({
             name: 'title',
