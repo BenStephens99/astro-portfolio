@@ -74,6 +74,10 @@
 
         &.featured {
             grid-template-columns: repeat(2, 1fr);
+ 
+            @media screen and (max-width: 650px) {
+                grid-template-columns: 1fr;
+            }
         }   
 
         @media screen and (max-width: 650px) {
