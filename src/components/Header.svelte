@@ -15,7 +15,7 @@
         <div>
             {#each paths as path, i}
                 <a
-                    class={`${currentPath === path.path.split("/")[1] ? "current-page" : ""} ${path.button && "no-underline"}`}
+                    class={`${currentPath === path.path.split("/")[1] ? "current-page" : ""} ${i === paths.length - 1 && "no-underline"}`}
                     href={path.path}
                 >
                     {#if i === paths.length - 1}
