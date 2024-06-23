@@ -5,7 +5,7 @@
     const paths = []
 
     for (const section of homeSections) {
-        paths.push({ name: section.title, path: `/${section.slug.current}`, button: false });
+        paths.push({ name: section.title, path: `${section.slug.current}`, button: false });
     }
 </script>
 
