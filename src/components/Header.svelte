@@ -34,12 +34,12 @@
             <label for="menu-toggle"> Menu </label>
         </button>
         <div class="mobile-menu">
-            {#each paths as path}
+            {#each paths as path, i}
                 <a
-                    class={`${currentPath === path.path.split("/")[1] ? "current-page" : ""} ${path.button && "no-underline"}`}
+                    class={`${currentPath === path.path.split("/")[1] ? "current-page" : ""} ${i === paths.length - 1 && "no-underline"}`}
                     href={path.path}
                 >
-                    {#if path.button}
+                    {#if i === paths.length - 1}
                         <button>{path.name}</button>
                     {:else}
                         {path.name}
