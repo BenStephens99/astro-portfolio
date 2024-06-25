@@ -57,6 +57,7 @@
         position: sticky;
         top: 0px;
         backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
         z-index: 100;
     }
 
