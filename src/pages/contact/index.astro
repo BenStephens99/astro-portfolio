@@ -4,10 +4,28 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout title="Ben Stephens">
 	<h1><span class="lighter">Get in</span> Touch</h1>
+	<div class="contact">
+		<p>Feel free to connect with me on <a href="https://www.linkedin.com/in/stephens-ben/" target="_blank" rel="noopener">LinkedIn</a> </p>
+		<p>Or send me an email at <a href="mailto:ben@stephens.uk.net">ben@stephens.uk.net</a></p>
+	</div>
 </Layout>
 
 <style lang="scss">
     h1 {
         text-align: center;
     }
+
+	.contact {
+		padding: 0 1rem;
+		text-align: center;
+		margin-top: 4rem;
+
+		@media screen and (max-width: 650px){
+			margin-top: 1rem;
+		}
+	}
+
+	a {
+		font-weight: bold;
+	 }
 </style>
