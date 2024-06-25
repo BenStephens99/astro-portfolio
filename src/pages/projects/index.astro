@@ -35,11 +35,21 @@ projectTypes = projectTypes.sort((a, b) => a.sortOrder - b.sortOrder);
         flex-direction: column;
         gap: 4rem;
         padding: 0 2rem;
+
+        @media (max-width: 650px) {
+            gap: 2rem;
+            padding: 0 1rem;
+        }
     }
 
     h1 {
         text-align: center;
         margin-bottom: 2rem;
+
+        @media screen and (max-width: 650px) {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
     }
 
     h2 {
@@ -47,6 +57,10 @@ projectTypes = projectTypes.sort((a, b) => a.sortOrder - b.sortOrder);
         font-weight: 300;
         padding-bottom: 2px;
         width: fit-content;
+
+        @media (max-width: 650px) {
+            font-size: 1.5rem;
+        }
     }
 
     p {
