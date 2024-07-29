@@ -18,7 +18,7 @@
                 src={urlFor(project.thumbnail).auto("format").height(featured ? 1000 : 500).url()}
                 alt={project.title}
                 style="view-transition-name:image-{project._id};"
-                loading={aboveFold ? "lazy" : "eager"}
+                loading={aboveFold ? "eager" : "lazy"}
             />
             <div class="project-body">
                 {#if project?.technologies?.length}
