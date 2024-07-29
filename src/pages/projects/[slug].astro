@@ -55,7 +55,7 @@ const project = await getProject(slug);
         </div>
         <article>
             {
-                project?.sections?.map((section) => (
+                project?.sections?.map((section, i) => (
                     <div class="project-section">
                         {section?.body ? (
                             <div class="project-section__body">
@@ -74,6 +74,7 @@ const project = await getProject(slug);
                                                 .auto("format")
                                                 .url()}
                                             alt={section.imageCaption}
+                                            loading={i === 0 ? "eager" : "lazy"}
                                         />
                                     ))}
                                 </div>
@@ -93,6 +94,7 @@ const project = await getProject(slug);
                         <img
                             src={urlFor(image).width(200).auto("format").url()}
                             alt={project.title}
+                            loading="lazy"
                         />
                     ))
                 }

@@ -2,10 +2,12 @@
     import { urlFor } from "../utils/image";
     export let projects = [];
     export let featured = false;
+    export let listIndex = 0;
 </script>
 
 <div class:featured={featured} class="projects-list">
-    {#each projects || [] as project}
+    {#each projects || [] as project, i}
+        {@const aboveFold = listIndex <= 1 && i <= 2}
         <a
             href={`${project.openInNewTab ? "" : "/projects/"}${project.slug?.current}`}
             target={project.openInNewTab ? "_blank" : "_self"}
@@ -16,6 +18,7 @@
                 src={urlFor(project.thumbnail).auto("format").height(featured ? 1000 : 500).url()}
                 alt={project.title}
                 style="view-transition-name:image-{project._id};"
+                loading={aboveFold ? "lazy" : "eager"}
             />
             <div class="project-body">
                 {#if project?.technologies?.length}

@@ -13,14 +13,14 @@ projectTypes = projectTypes.sort((a, b) => a.sortOrder - b.sortOrder);
 <Layout title="Projects">
     <div class="projects">
         <h1><span class="lighter">My</span> Projects</h1>
-        {projectTypes.map((projectType) => (
+        {projectTypes.map((projectType, i) => (
             <div>
                 <div class="project-title">
                     <h2>{projectType.type}</h2>
                     {projectType?.icon && <img src={urlFor(projectType.icon).height(200).url()} alt={projectType.type} />}
                 </div>
                 <p>{projectType.description}</p>
-                <ProjectList projects={projectType.projects} featured={projectType.featured}/>
+                <ProjectList projects={projectType.projects} featured={projectType.featured} listIndex={i}/>
             </div>
         ))}
     </div>
