@@ -9,13 +9,13 @@ export const sanityClient = createClient({
 
 export async function getAllProjectSlugs() {
   const query = `*[_type == "project"]{ "slug": slug.current }`;
-  const slugs = await client.fetch(query);
+  const slugs = await sanityClient.fetch(query);
   return slugs.map(slug => slug.slug);
 }
 
 export async function getAllPostSlugs() {
   const query = `*[_type == "blog"]{ "slug": slug.current }`;
-  const slugs = await client.fetch(query);
+  const slugs = await sanityClient.fetch(query);
   return slugs.map(slug => slug.slug);
 }
 
