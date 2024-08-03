@@ -5,4 +5,4 @@ import projectType from './projectType'
 import technology from './technology'
 import projectSection from './projectSection'
 
-export const schemaTypes = [homeSection, post, project, projectType, technology, projectSection]
+export const schemaTypes = [homeSection, post, projectType, technology, projectSection, project]
