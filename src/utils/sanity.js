@@ -7,6 +7,18 @@ export const sanityClient = createClient({
     useCdn: false,
 });
 
+export async function getAllProjectSlugs() {
+  const query = `*[_type == "project"]{ "slug": slug.current }`;
+  const slugs = await client.fetch(query);
+  return slugs.map(slug => slug.slug);
+}
+
+export async function getAllPostSlugs() {
+  const query = `*[_type == "blog"]{ "slug": slug.current }`;
+  const slugs = await client.fetch(query);
+  return slugs.map(slug => slug.slug);
+}
+
 export async function getPosts() {
     const posts = await sanityClient.fetch('*[_type == "blog"] | order(publishedAt desc)')
     return posts
