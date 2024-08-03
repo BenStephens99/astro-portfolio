@@ -10,7 +10,9 @@ export const sanityClient = createClient({
 export async function getAllProjectSlugs() {
   const query = `*[_type == "project"]{ "slug": slug.current }`;
   const slugs = await sanityClient.fetch(query);
-  return slugs.map(slug => slug.slug);
+  return slugs
+    .map(slug => slug.slug)
+    .filter(slug => !slug.startsWith('https'));
 }
 
 export async function getAllPostSlugs() {
