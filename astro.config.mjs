@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
