@@ -21,6 +21,29 @@
                 loading={aboveFold ? "eager" : "lazy"}
             />
             <div class="project-body">
+                <div class="project-title">
+                    <h3>{project.title}</h3>
+                    {#if project.openInNewTab}
+                        <svg
+                            fill="#3D3928"
+                            viewBox="0 0 16 16"
+                            xmlns="http://www.w3.org/2000/svg"
+                            ><g id="SVGRepo_bgCarrier" stroke-width="0"
+                            ></g><g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></g><g id="SVGRepo_iconCarrier"
+                                ><path
+                                    d="M14.21 1.5H10v1.25h3.08L7.9 7.21l.82 1 5.53-4.77V7h1.25V2.79a1.29 1.29 0 0 0-1.29-1.29z"
+                                ></path><path
+                                    d="M12.25 13.25H1.75v-8.5H7.5V3.5h-6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4h-1.25z"
+                                ></path></g
+                            ></svg
+                        >
+                    {/if}
+                </div>
+                <div class="summary">{project.summary || ""}</div>
                 {#if project?.technologies?.length}
                     <div class="tech-stack">
                         {#each project.technologies || [] as technology}
@@ -35,31 +58,6 @@
                         {/each}
                     </div>
                 {/if}
-                <div>
-                    <div class="project-title">
-                        <h3>{project.title}</h3>
-                        {#if project.openInNewTab}
-                            <svg
-                                fill="#3D3928"
-                                viewBox="0 0 16 16"
-                                xmlns="http://www.w3.org/2000/svg"
-                                ><g id="SVGRepo_bgCarrier" stroke-width="0"
-                                ></g><g
-                                    id="SVGRepo_tracerCarrier"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                ></g><g id="SVGRepo_iconCarrier"
-                                    ><path
-                                        d="M14.21 1.5H10v1.25h3.08L7.9 7.21l.82 1 5.53-4.77V7h1.25V2.79a1.29 1.29 0 0 0-1.29-1.29z"
-                                    ></path><path
-                                        d="M12.25 13.25H1.75v-8.5H7.5V3.5h-6a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4h-1.25z"
-                                    ></path></g
-                                ></svg
-                            >
-                        {/if}
-                    </div>
-                    <div class="summary">{project.summary || ""}</div>
-                </div>
             </div>
         </a>
     {/each}
@@ -95,6 +93,7 @@
         padding: 1rem;
         border-radius: 1rem;
         width: 100%;
+        line-height: 1.5;
 
         &:before {
             height: 80%;
@@ -106,7 +105,7 @@
             background-color: rgba(255, 255, 255, 0.4);
             display: block !important;
             border-radius: 1rem;
-            box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.2);
         }
     }
 
@@ -132,7 +131,7 @@
         object-fit: cover;
         width: 100%;
         z-index: 2;
-        box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2);
         transition: 0.3s transform;
     }
 
@@ -146,19 +145,36 @@
     .tech-stack {
         display: flex;
         gap: 0.5rem;
-        padding-top: 0.75rem;
+        padding-top: 1rem;
+        margin-top: auto;
     }
+
+
 
     .project-body {
         z-index: 2;
-        padding: 0 0.5rem;
-        padding-bottom: 0.5rem;
+        padding: 1rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        height: 100%;
+    }
+
+    .featured .project-body {
+        padding-top: 1.5rem;
     }
 
     h3 {
         font-weight: 600;
         font-size: 1.2rem;
-        padding-top: 1rem;
-        padding-bottom: 0.5rem;
+    }
+
+    .featured h3 {
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+
+    .summary {
+        font-size: 1rem;
     }
 </style>
