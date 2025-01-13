@@ -15,7 +15,7 @@
         >
             <img
                 class="thumbnail"
-                src={urlFor(project.thumbnail).auto("format").height(featured ? 1000 : 500).url()}
+                src={urlFor(project.thumbnail).auto("format").width(featured ? 1000 : 500).url()}
                 alt={project.title}
                 style="view-transition-name:image-{project._id};"
                 loading={aboveFold ? "eager" : "lazy"}
