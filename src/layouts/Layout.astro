@@ -9,6 +9,8 @@ interface Props {
 
 const currentPath = Astro.url.pathname.split("/")[1] || "/";
 
+const year = new Date().getFullYear();
+
 const { title } = Astro.props;
 
 let homeSections = await getHomeSections();
@@ -36,7 +38,7 @@ homeSections.sort((a, b) => a.sortIndex - b.sortIndex);
 			<slot />
 		</main>
 		<footer>
-			<p>© Ben Stephens 2024</p>
+			<p>© Ben Stephens {year}</p>
 		</footer>
 
 		<style is:global lang="scss">
